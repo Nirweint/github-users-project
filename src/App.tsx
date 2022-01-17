@@ -1,26 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {Header} from "./components/header/Header";
+import {Grid} from "@mui/material";
+import {Profile} from "./components/profile/Profile";
+import {MainContent} from "./components/MainContent/MainContent";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export const App = () => {
+    return (
+        <div>
+            <Header/>
+            <Grid container spacing={2} columns={16} m={3}>
+                <Grid item xs={6}>
+                    <Profile/>
+                </Grid>
+                <Grid item xs={10}>
+                    <MainContent/>
+                </Grid>
+            </Grid>
+        </div>
+    );
 }
-
-export default App;
