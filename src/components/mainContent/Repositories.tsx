@@ -2,18 +2,21 @@ import React from 'react';
 import {Grid, Pagination, Stack, Typography} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
 import {
+    selectUserIsLoading,
     selectListOfUserRepositories,
     selectUserProfileInfo,
     selectUserPublicReposCount
 } from "../../state/selectors";
 import {Repository} from "./Repository";
 import {PER_PAGE_COUNT, setUserRepositoriesTC} from "../../state/userReducer";
+import {Loader} from "../../common/components/Loader/Loader";
 
-export const MainContent = () => {
+export const Repositories = () => {
     const dispatch = useDispatch()
     const repositoryList = useSelector(selectListOfUserRepositories)
     const userPublicReposCount = useSelector(selectUserPublicReposCount)
     const {login} = useSelector(selectUserProfileInfo)
+    const isLoading = useSelector(selectUserIsLoading)
 
     const handlePageClick = (event: React.ChangeEvent<unknown>, page: number) => {
         if (login) {
@@ -21,7 +24,21 @@ export const MainContent = () => {
         }
     }
 
-    const ALL_PAGES_COUNT = userPublicReposCount / PER_PAGE_COUNT
+    const ALL_PAGES_COUNT = Math.ceil(userPublicReposCount/PER_PAGE_COUNT)
+
+    if (isLoading) {
+        return (
+            <Grid
+                container
+                justifyContent={'center'}
+                alignItems={'center'}
+            >
+                <Grid item>
+                    <Loader/>
+                </Grid>
+            </Grid>
+        )
+    }
 
     return (
         <Grid container spacing={1} sx={{height: "70vh"}}>

@@ -5,7 +5,7 @@ import PeopleIcon from '@mui/icons-material/People';
 import {useSelector} from "react-redux";
 import {selectUserProfileInfo} from "../../state/selectors";
 
-export const Profile = () => {
+export const Profile = React.memo( () => {
     const {
         followers,
         following,
@@ -54,4 +54,4 @@ export const Profile = () => {
             </Grid>
         </div>
     );
-}
+})

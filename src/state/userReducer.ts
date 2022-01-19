@@ -8,9 +8,10 @@ export const PER_PAGE_COUNT = 5
 export enum USER_ACTIONS_TYPE {
     SET_USER = 'SET_USER',
     SET_LIST_OF_REPOSITORIES = "SET_LIST_OF_REPOSITORIES",
+    SET_LOADING = "SET_LOADING",
 }
 
-export type UserActionsType = SetUserACType | SetUserRepositoriesACType
+export type UserActionsType = SetUserACType | SetUserRepositoriesACType | setLoadingACType
 
 type UserProfileType = {
     login: Nullable<string>
@@ -24,7 +25,8 @@ type UserProfileType = {
 
 export type UserStateType = {
     userProfile: UserProfileType
-    userRepositories: RepositoryType[]
+    userRepositories: RepositoryType[],
+    isLoading: boolean
 }
 
 export type RepositoryType = {
@@ -43,7 +45,8 @@ const initialState: UserStateType = {
         html_url: null,
         public_repos: 0,
     },
-    userRepositories: []
+    userRepositories: [],
+    isLoading: false
 }
 
 
@@ -55,7 +58,17 @@ export const userReducer = (state = initialState, action: UserActionsType): User
         }
 
         case USER_ACTIONS_TYPE.SET_LIST_OF_REPOSITORIES: {
-            return {...state, userRepositories: action.payload.map(repo => ({...repo}))}
+            return {
+                ...state,
+                userRepositories: action.payload.map(repo => ({
+                    html_url: repo.html_url,
+                    description: repo.description,
+                    name: repo.name
+                }))
+            }
+        }
+        case USER_ACTIONS_TYPE.SET_LOADING: {
+            return { ...state, isLoading: action.isLoading, }
         }
 
         default: {
@@ -81,16 +94,42 @@ export const setUserRepositoriesAC = (payload: RepositoryType[]) => {
     } as const
 }
 
+export type setLoadingACType = ReturnType<typeof setLoadingAC>
+export const setLoadingAC = (isLoading: boolean) => {
+    return {
+        type: USER_ACTIONS_TYPE.SET_LOADING,
+        isLoading,
+    } as const
+}
+
 // THUNK
 export const setUserTC = (userName: string): ThunkType => dispatch => {
+    dispatch(setLoadingAC(true))
     gitHubAPI.getUser(userName)
         .then((res) => {
-            const {login, avatar_url, name, followers, following, html_url, public_repos} = res.data
-            dispatch(setUserAC({login, avatar_url, name, followers, following, html_url, public_repos}))
-            dispatch(setUserRepositoriesTC(userName,1))
+            const {
+                login,
+                avatar_url,
+                name,
+                followers,
+                following,
+                html_url,
+                public_repos
+            } = res.data
+            dispatch(setUserAC({
+                login,
+                avatar_url,
+                name,
+                followers,
+                following,
+                html_url,
+                public_repos
+            }))
+            dispatch(setUserRepositoriesTC(userName, 1))
+            dispatch(setLoadingAC(false))
         })
         .catch(e => {
-            console.warn(e)
+            console.log(e)
         })
 }
 

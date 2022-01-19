@@ -1,23 +1,20 @@
 import React from 'react';
 import {Header} from "./components/header/Header";
-import {Container, Grid} from "@mui/material";
-import {Profile} from "./components/profile/Profile";
-import {MainContent} from "./components/mainContent/MainContent";
+import {Route, Routes} from 'react-router-dom';
+import {ProfilePage} from "./components/pages/ProfilePage";
+import {SearchPage} from "./components/pages/SearchPage";
+import {UserNotFound} from "./components/pages/UserNotFound";
 
 export const App = () => {
+
     return (
         <div style={{height: "100vh"}}>
             <Header/>
-            <Container >
-                <Grid container spacing={2} columns={16} m={3}>
-                    <Grid item xs={6}>
-                        <Profile/>
-                    </Grid>
-                    <Grid item xs={10}>
-                        <MainContent/>
-                    </Grid>
-                </Grid>
-            </Container>
+            <Routes>
+                <Route path={'/'} element={<SearchPage/>}/>
+                <Route path={'/profile/:username'} element={<ProfilePage/>}/>
+                <Route path={'/error'} element={<UserNotFound/>}/>
+            </Routes>
         </div>
     );
 }
