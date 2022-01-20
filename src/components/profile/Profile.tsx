@@ -3,7 +3,7 @@ import {Avatar, Grid, Link, Typography} from "@mui/material";
 import PersonIcon from '@mui/icons-material/Person';
 import PeopleIcon from '@mui/icons-material/People';
 import {useSelector} from "react-redux";
-import {selectUserProfileInfo} from "../../state/selectors";
+import {selectUserProfileInfo} from "../../state/selectors/user-selectors";
 
 export const Profile = React.memo( () => {
     const {

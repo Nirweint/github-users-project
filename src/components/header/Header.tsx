@@ -7,7 +7,7 @@ import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import {useDispatch} from "react-redux";
-import {setUserTC} from "../../state/userReducer";
+import {setUserTC} from "../../state/reducers/userReducer";
 import {useNavigate} from "react-router-dom";
 
 export const Header = () => {
@@ -60,6 +60,10 @@ export const Header = () => {
         }
     }
 
+    const handleLogoClick = () => {
+        navigate('/')
+    }
+
     const handleSearchChange = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         setState(event.target.value)
     }
@@ -68,7 +72,8 @@ export const Header = () => {
         <Box sx={{flexGrow: 1}}>
             <AppBar position="static">
                 <Toolbar>
-                    <GitHubIcon fontSize={'large'}/>
+                    <GitHubIcon fontSize={'large'} onClick={handleLogoClick}
+                                sx={{cursor: 'pointer'}}/>
                     <Search>
                         <SearchIconWrapper>
                             <SearchIcon/>

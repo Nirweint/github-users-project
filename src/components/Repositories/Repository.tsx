@@ -1,8 +1,8 @@
 import React from 'react';
 import {Grid, Link, Typography} from "@mui/material";
-import {RepositoryType} from "../../state/userReducer";
+import {RepositoryType} from "../../state/reducers/reposReducer";
 
-export const Repository: React.FC<RepositoryType> = ({html_url,name ,description}) => {
+export const Repository: React.FC<RepositoryType> = React.memo( ({html_url,name ,description}) => {
 
     const hasUrl = html_url !== null ? html_url : undefined
 
@@ -16,4 +16,4 @@ export const Repository: React.FC<RepositoryType> = ({html_url,name ,description
             <Typography>{description}</Typography>
         </Grid>
     );
-}
+})

@@ -1,9 +1,11 @@
 import {applyMiddleware, combineReducers, createStore} from 'redux';
 import thunk, {ThunkAction} from "redux-thunk";
-import {UserActionsType, userReducer} from "./userReducer";
+import {UserActionsType, userReducer} from "./reducers/userReducer";
+import {reposReducer} from "./reducers/reposReducer";
 
 const rootReducer = combineReducers({
     user: userReducer,
+    repos: reposReducer,
 })
 
 export const store = createStore(rootReducer, applyMiddleware(thunk));
