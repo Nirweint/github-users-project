@@ -5,7 +5,6 @@ import {
     selectUserProfileInfo,
     selectUserPublicReposCount
 } from "../../state/selectors/user-selectors";
-import {Repository} from "./Repository";
 import {Loader} from "../../common/components/Loader/Loader";
 import {
     selectListOfRepositories,
@@ -14,6 +13,7 @@ import {
 import {StatusType} from "../../state/types";
 import {PER_PAGE_COUNT, setReposTC} from "../../state/reducers/reposReducer";
 import {NoReposPage} from "../pages/NoReposPage";
+import {Repository} from "./Repository";
 
 export const Repositories = React.memo(() => {
     const dispatch = useDispatch()
@@ -35,7 +35,7 @@ export const Repositories = React.memo(() => {
     }
 
     return (
-        <Grid container spacing={1} sx={{height: "70vh"}}>
+        <Grid container spacing={1}>
             <Grid item>
                 <Typography fontSize={42}
                             fontWeight={700}>Repositories({userPublicReposCount})</Typography>
@@ -43,6 +43,7 @@ export const Repositories = React.memo(() => {
             <Grid
                 container
                 direction="column"
+                justifyContent={'flex-start'}
             >
                 {reposStatus === StatusType.loading && (<><Loader/></>)}
                 {reposStatus === StatusType.succeeded && <>

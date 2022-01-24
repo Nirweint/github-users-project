@@ -3,6 +3,7 @@ import {Nullable} from "../../types/Nullable";
 import {ThunkType} from "../store";
 import {StatusType} from "../types";
 import {setReposTC} from "./reposReducer";
+import {AxiosError} from "axios";
 
 export enum USER_ACTIONS_TYPE {
     SET_USER = 'UserReducer/SET_USER',
@@ -116,7 +117,7 @@ export const setUserTC = (userName: string): ThunkType => dispatch => {
             }
             dispatch(setUserStatusAC(StatusType.succeeded))
         })
-        .catch(e => {
+        .catch((e: AxiosError) => {
             dispatch(setUserStatusAC(StatusType.failed))
         })
 }

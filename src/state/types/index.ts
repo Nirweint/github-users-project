@@ -1,4 +1,3 @@
-
 export enum StatusType {
     loading = 'loading',
     succeeded = 'succeeded',
