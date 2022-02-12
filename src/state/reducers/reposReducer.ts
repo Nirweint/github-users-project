@@ -2,6 +2,7 @@ import {Dispatch} from "redux";
 import {gitHubAPI} from "../../api/api";
 import {Nullable} from "../../types/Nullable";
 import {StatusType} from "../types";
+import {ThunkType} from "../store";
 
 export const PER_PAGE_COUNT = 5
 
@@ -84,7 +85,7 @@ export const setReposUserErrorAC = (error: string) => {
 }
 
 // THUNK
-export const setReposTC = (userName: string, page: number) => (dispatch: Dispatch) => {
+export const setReposTC = (userName: string, page: number): ThunkType => dispatch => {
     dispatch(setReposStatusAC(StatusType.loading))
     gitHubAPI.getListOfUserReposPerPage(userName, PER_PAGE_COUNT, page)
         .then((res) => {

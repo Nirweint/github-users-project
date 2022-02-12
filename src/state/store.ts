@@ -1,7 +1,7 @@
 import {applyMiddleware, combineReducers, createStore} from 'redux';
 import thunk, {ThunkAction} from "redux-thunk";
 import {UserActionsType, userReducer} from "./reducers/userReducer";
-import {reposReducer} from "./reducers/reposReducer";
+import {ReposActionsType, reposReducer} from "./reducers/reposReducer";
 
 const rootReducer = combineReducers({
     user: userReducer,
@@ -14,4 +14,4 @@ export type AppRootStateType = ReturnType<typeof rootReducer>
 
 export type ThunkType = ThunkAction<void, AppRootStateType, unknown, RootActionsType>
 
-export type RootActionsType = UserActionsType
+export type RootActionsType = UserActionsType | ReposActionsType

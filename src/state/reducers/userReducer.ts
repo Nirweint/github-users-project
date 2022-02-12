@@ -13,7 +13,7 @@ export enum USER_ACTIONS_TYPE {
 
 export type UserActionsType = SetUserACType | SetUserStatusACType | SetUserErrorACType
 
-type UserProfileType = {
+export type UserProfileType = {
     login: Nullable<string>
     avatar_url: Nullable<string>
     name: Nullable<string>
