@@ -12,7 +12,7 @@ import {
 } from "../../state/selectors/repos-selectors";
 import {StatusType} from "../../state/types";
 import {PER_PAGE_COUNT, setReposTC} from "../../state/reducers/reposReducer";
-import {NoReposPage} from "../pages/NoReposPage";
+import {NoReposPage} from "../../pages/NoReposPage";
 import {Repository} from "./Repository";
 
 export const Repositories = React.memo(() => {

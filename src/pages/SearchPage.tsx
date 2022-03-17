@@ -1,7 +1,6 @@
 import React from 'react';
 import {Grid, Typography} from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
-import {Loader} from "../../common/components/Loader/Loader";
 
 export const SearchPage = () => {
     return (

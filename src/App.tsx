@@ -1,9 +1,9 @@
 import React from 'react';
 import {Header} from "./components/header/Header";
 import {Route, Routes} from 'react-router-dom';
-import {ProfilePage} from "./components/pages/ProfilePage";
-import {SearchPage} from "./components/pages/SearchPage";
-import {UserNotFound} from "./components/pages/UserNotFound";
+import {ProfilePage} from "./pages/ProfilePage";
+import {SearchPage} from "./pages/SearchPage";
+import {UserNotFound} from "./pages/UserNotFound";
 
 export const App = () => {
 

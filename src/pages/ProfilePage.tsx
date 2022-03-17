@@ -1,13 +1,13 @@
 import React, {useEffect} from 'react';
 import {Container, Grid} from "@mui/material";
-import {Profile} from "../profile/Profile";
-import {Repositories} from "../repositories/Repositories";
+import {Profile} from "../components/profile/Profile";
+import {Repositories} from "../components/repositories/Repositories";
 import {useDispatch, useSelector} from "react-redux";
-import {Loader} from "../../common/components/Loader/Loader";
+import {Loader} from "../common/components/Loader/Loader";
 import {useNavigate, useParams} from 'react-router-dom';
-import {setUserTC} from "../../state/reducers/userReducer";
-import {selectUserStatus} from "../../state/selectors/user-selectors";
-import {StatusType} from "../../state/types";
+import {setUserTC} from "../state/reducers/userReducer";
+import {selectUserStatus} from "../state/selectors/user-selectors";
+import {StatusType} from "../state/types";
 
 export const ProfilePage = React.memo(() => {
 

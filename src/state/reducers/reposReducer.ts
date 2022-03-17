@@ -1,4 +1,3 @@
-import {Dispatch} from "redux";
 import {gitHubAPI} from "../../api/api";
 import {Nullable} from "../../types/Nullable";
 import {StatusType} from "../types";
